@@ -33,5 +33,14 @@
 
 #### - on lines 15 to 17 - added a navigational element that links to "about.html".
 
+### E.  Add a sample inventory appropriate for your chosen store to the application. You should have five parts and five products in your sample inventory and should not overwrite existing data in the database.
 
+Note: Make sure the sample inventory is added only when both the part and product lists are empty. When adding the sample inventory appropriate for the store, the inventory is stored in a set so duplicate items cannot be added to your products. When duplicate items are added, make a “multi-pack” part.
 
+#### under BootStrapData.java
+
+#### - on lines 45 to 46 - created the variables "partsCount" and "productsCount" that count the number of parts and products held in their respective repositories.
+
+#### - on lines 48 to 99 - created an if statement that checks if both partsCount and productsCount variables are empty and populates the parts and products tables in the mainscreen view with sample data (5 sample parts - split between 3 outsourced parts and 2 in-house parts - and 5 sample products) in their respective tables, if true.
+
+#### - on lines 101 to 112 - commented out example code that prints to the terminal.
