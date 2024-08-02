@@ -58,11 +58,11 @@ Note: Make sure the sample inventory is added only when both the part and produc
 
 #### - on line 91 - changed the color of the button designated for deleting products to red.
 
-#### - on lines 93 to 96 - created a form in order to set up a POST request for the "buyProduct" URL endpoint using a link expression. 
+#### - on line 93 to 96 - created a form in order to set up a POST request for the "buyProduct" URL endpoint using a link expression. 
 
-#### - on lines 94 - Created an input tag in order to pass the product's Id while also keeping it hidden from the end users.
+#### - on line 94 - Created an input tag in order to pass the product's Id while also keeping it hidden from the end users.
 
-#### - on lines 95 - Created the green "Buy Now" button.
+#### - on line 95 - Created the green "Buy Now" button.
 
 #### under BuyProductController.java
 
@@ -73,4 +73,54 @@ Note: Make sure the sample inventory is added only when both the part and produc
 #### - on lines 19 to 35 - Created a buyProduct handler method that handles post requests (with @PostMapping) that checks if a product is found within the product repository. If it is, it then checks if the product's inventory is in stock. If true, it decrements the product's inventory by one after a purchase is made, saves it to the repository, and outputs a successful purchase message. Otherwise it displays a failed purchase message. This method redirects back to the "mainscreen.html" view.
 
 
+### G: In this step you have to add max and min inventory fields for parts, modify your sample inventory to show the max and min inventory, and update both the part forms to have additional inputs for the max and min inventory. Then they want you to rename the database file, and add code that enforces that the inventory is between the max and min values. First go to Part.java, and add the minInv and maxInv fields (name em whatever you want), you can also use the same '@Min' annotation as the other fields to enforce that it cannot be below zero, and have a message with it. Be sure to also add a new constructor that includes these new fields, and make getter and setter functions for them. Next go back to BootStrapData.java and add max and min inventory values for your sample inventory parts. Then for both InhousePartForm and OutsourcedPartForm, add text inputs for both max and min inventory. You can probably figure out how to put it in there just by seeing how the other fields are put in there and copying it but changing as necessary. Then rename the database file, it will look something like this spring-boot-h2-db.mv.db you can find it in file explorer or finder and right click it and rename it to whatever you like. In the application.properties file, you will need to rename it there as well and make sure they match. Next I would create a method in Part.java that checks if an inventory is valid, by returning true if the inventory falls between the max and min values, and returns false otherwise. For both inhouse and outsourced part controller files, add logic that uses the isInvValid method you created to generate an error message if the inventory is outside of range. I used BindingResult to reject bad values with a message, look into this for the error messaging. Once this is working as expected and desired, commit and push with a message.
 
+#### under Part.java
+
+#### - on lines 32 to 35 - Created two new fields "minInv" and "maxInv" and set their min values to 0 using the @Min annotation.
+
+#### - on line 45 - Created a new full constructor containing all the fields including the updated minInv and maxInv fields.
+
+#### - on line 95 - Created the green "Buy Now" button.
+
+#### - on lines 80 to 91 - Created new setters and getters for minInv.
+
+#### - on lines 94 to 99 - Created new setters and getters for maxInv.
+
+#### - on lines 110 to 112 - Created a Boolean method "isInvValid()" that checks to see if the inventory value entered by the user when adding a new part (in-house or outsourced) is between the minimum and maximum value range set by the user.
+
+#### under BootstrapData.java
+
+#### - on lines 54 to 55 - Modified sample data for "outPartOne" object to include a minimum value(5) and maximum value(10).
+
+#### - on lines 64 to 65 - Modified sample data for "outPartTwo" object to include a minimum value(0) and maximum value(20).
+
+#### - on lines 74 to 75 - Modified sample data for "outPartThree" to include a minimum value(0) and maximum value(30).
+
+#### - on lines 84 to 85 - Modified sample data for "inPartOne" to include a minimum value(1) and maximum value(40).
+
+#### - on lines 84 to 85 - Modified sample data for "inPartTwo" to include a minimum value(0) and maximum value(50).
+
+#### under InhousePartForm.html
+
+#### - on lines 24 to 28 - Added text inputs for both minimum and maximum inventory inside the form.
+
+#### under OutsourcedPartForm.html
+
+#### - on lines 25 to 29 - Added text inputs for both minimum and maximum inventory inside the form.
+
+#### under spring-boot-h2-db102
+
+#### - changed the database's name to "spring-boot-h2-db103".
+
+#### under application.properties
+
+#### - on line 6 - modified the "spring.datasource.url=jdbc:h2:file:~/spring-boot-h2-db102" to "spring.datasource.url=jdbc:h2:file:~/spring-boot-h2-db103"
+
+#### under AddInhousePartController.java
+
+#### - on lines 45 to 48 - created an if statement that checks if the added in-house part's inventory is valid (falls within the range of min value and max value set) and if it returns false, throws the error "Inventory must be between min and max values".
+
+#### under AddOutsourcedPartController.java
+
+#### - on lines 46 to 49 - created an if statement that checks if the added outsourced part's inventory is valid (falls within the range of min value and max value set) and if it returns false, throws the error "Inventory must be between min and max values".

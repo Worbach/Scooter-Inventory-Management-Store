@@ -51,6 +51,8 @@ public class BootStrapData implements CommandLineRunner {
             outPartOne.setCompanyName("Eastern Motors");
             outPartOne.setName("150cc motor");
             outPartOne.setInv(5);
+            outPartOne.setMinInv(0);
+            outPartOne.setMaxInv(10);
             outPartOne.setPrice(400.0);
             outPartOne.setId(100L);
             outsourcedPartRepository.save(outPartOne);
@@ -59,6 +61,8 @@ public class BootStrapData implements CommandLineRunner {
             outPartTwo.setCompanyName("Solar City Batteries");
             outPartTwo.setName("1000Wh battery");
             outPartTwo.setInv(5);
+            outPartTwo.setMinInv(0);
+            outPartTwo.setMaxInv(20);
             outPartTwo.setPrice(300.0);
             outPartTwo.setId(200L);
             outsourcedPartRepository.save(outPartTwo);
@@ -67,6 +71,8 @@ public class BootStrapData implements CommandLineRunner {
             outPartThree.setCompanyName("Superior Controls");
             outPartThree.setName("electric scooter controller");
             outPartThree.setInv(5);
+            outPartThree.setMinInv(0);
+            outPartThree.setMaxInv(30);
             outPartThree.setPrice(250.0);
             outPartThree.setId(300L);
             outsourcedPartRepository.save(outPartThree);
@@ -75,6 +81,8 @@ public class BootStrapData implements CommandLineRunner {
             inPartOne.setName("scooter deck");
             inPartOne.setPrice(100);
             inPartOne.setInv(5);
+            inPartOne.setMinInv(1);
+            inPartOne.setMaxInv(40);
             inPartOne.setPartId(10);
             inhousePartRepository.save(inPartOne);
 
@@ -82,6 +90,8 @@ public class BootStrapData implements CommandLineRunner {
             inPartTwo.setName("scooter brakes multi-pack");
             inPartTwo.setPrice(50);
             inPartTwo.setInv(5);
+            inPartTwo.setMinInv(0);
+            inPartTwo.setMaxInv(50);
             inPartTwo.setPartId(20);
             inhousePartRepository.save(inPartTwo);
 

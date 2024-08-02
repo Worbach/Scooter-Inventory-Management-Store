@@ -42,11 +42,15 @@ public class AddInhousePartController{
         if(theBindingResult.hasErrors()){
             return "InhousePartForm";
         }
+        if (!part.isInvValid()) {
+            theBindingResult.rejectValue("inv", "error.part", "Inventory must be between min and max values");
+            return "InhousePartForm";
+        }
         else{
         InhousePartService repo=context.getBean(InhousePartServiceImpl.class);
         InhousePart ip=repo.findById((int)part.getId());
         if(ip!=null)part.setProducts(ip.getProducts());
-            repo.save(part);
+        repo.save(part);
 
         return "confirmationaddpart";}
     }
