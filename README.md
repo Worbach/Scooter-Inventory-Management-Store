@@ -124,3 +124,20 @@ Note: Make sure the sample inventory is added only when both the part and produc
 #### under AddOutsourcedPartController.java
 
 #### - on lines 46 to 49 - created an if statement that checks if the added outsourced part's inventory is valid (falls within the range of min value and max value set) and if it returns false, throws the error "Inventory must be between min and max values".
+
+### H.  Add validation for between or at the maximum and minimum fields. The validation must include the following:
+•  Display error messages for low inventory when adding and updating parts if the inventory is less than the minimum number of parts.
+•  Display error messages for low inventory when adding and updating products lowers the part inventory below the minimum.
+•  Display error messages when adding and updating parts if the inventory is greater than the maximum.
+
+#### under AddInhousePartController.java
+
+#### on lines 45 to 50 - modified and expanded on the previous if/else statement to return a more specific error message when the part's inventory is below the set minimum limit or above the set maximum limit respectively. 
+
+#### under AddOutsourcedPartController.java
+
+#### on lines 46 to 51 - modified and expanded on the previous if/else statement to return a more specific error message when the part's inventory is below the set minimum limit or above the set maximum limit respectively.
+
+#### under EnufPartsValidator.java
+
+#### on line 36 - added an if statement that checks if a part's inventory dips below the minimum inventory limit for that part while creating a product using that part. If that's true, it sends out an appropriate error to the user.
