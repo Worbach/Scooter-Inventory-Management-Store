@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Project: demoDarbyFrameworks2-master
@@ -148,6 +148,60 @@ class PartTest {
         newPartOut.setId(1l);
         assertEquals(partOut,newPartOut);
 
+    }
+
+    @Test
+    void setMinInvTest() {
+        int inv = 1;
+        partIn.setMinInv(inv);
+        assertEquals(inv,partIn.getMinInv());
+        partOut.setMinInv(inv);
+        assertEquals(inv,partOut.getMinInv());
+    }
+
+    @Test
+    void setMaxInvTest() {
+        int inv = 100;
+        partIn.setMaxInv(inv);
+        assertEquals(inv,partIn.getMaxInv());
+        partOut.setMaxInv(inv);
+        assertEquals(inv,partOut.getMaxInv());
+    }
+
+    @Test
+    public void testInvWithinRange() {
+        partIn.setInv(5);
+        partIn.setMinInv(3);
+        partIn.setMaxInv(10);
+        partOut.setInv(5);
+        partOut.setMinInv(3);
+        partOut.setMaxInv(10);
+        assertTrue(partIn.isInvValid(), "Inventory should be valid when it is within the range.");
+        assertTrue(partOut.isInvValid(), "Inventory should be valid when it is within the range");
+    }
+
+    @Test
+    public void testInvOutsideMinRange() {
+        partIn.setInv(2);
+        partIn.setMinInv(3);
+        partIn.setMaxInv(10);
+        partOut.setInv(2);
+        partOut.setMinInv(3);
+        partOut.setMaxInv(10);
+        assertFalse(partIn.isInvValid(), "Inventory should be valid when it is within the range.");
+        assertFalse(partOut.isInvValid(), "Inventory should be valid when it is within the range.");
+    }
+
+    @Test
+    public void testInvOutsideMaxRange() {
+        partIn.setInv(11);
+        partIn.setMinInv(3);
+        partIn.setMaxInv(10);
+        partOut.setInv(11);
+        partOut.setMinInv(3);
+        partOut.setMaxInv(10);
+        assertFalse(partIn.isInvValid(), "Inventory should be valid when it is within the range.");
+        assertFalse(partIn.isInvValid(), "Inventory should be valid when it is within the range.");
     }
 
     @Test

@@ -141,3 +141,17 @@ Note: Make sure the sample inventory is added only when both the part and produc
 #### under EnufPartsValidator.java
 
 #### on line 36 - added an if statement that checks if a part's inventory dips below the minimum inventory limit for that part while creating a product using that part. If that's true, it sends out an appropriate error to the user.
+
+### I.  Add at least two unit tests for the maximum and minimum fields to the PartTest class in the test package.
+
+#### under PartTest.java
+
+#### on lines 152 to 160 - added a unit test called "SetMinInvTest()" that tests if the setMinInv() method properly stores a minimum number inside the in-house and outsourced part objects. 
+
+#### on lines 162 to 169 - added a unit test called "SetMaxInvTest()" that tests if the setMaxInv() method properly stores a maximum number inside the in-house and outsourced part objects.
+
+#### on lines 172 to 181 - added a unit test called "testInvWithinRange()" that uses the isInvValid() method to test if the inventory number set inside the in-house part object and the outsourced part object stores a number inside the range of expected minimum and maximum inventory numbers.
+
+#### on lines 183 to 193 - added a unit test called "testInvOutsideMinRange()" that uses the isInvValid() method to test if the inventory number set inside the in-house part object and the outsourced part object stores a number outside the range of the expected minimum inventory number.
+
+#### on lines 195 to 205 - added a unit test called "testInvOutsideMaxRange()" that uses the isInvValid() method to test if the inventory number set inside the in-house part object and the outsourced part object stores a number outside the range of the expected maximum inventory number.
