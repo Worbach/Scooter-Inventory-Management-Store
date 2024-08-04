@@ -155,3 +155,9 @@ Note: Make sure the sample inventory is added only when both the part and produc
 #### on lines 183 to 193 - added a unit test called "testInvOutsideMinRange()" that uses the isInvValid() method to test if the inventory number set inside the in-house part object and the outsourced part object stores a number outside the range of the expected minimum inventory number.
 
 #### on lines 195 to 205 - added a unit test called "testInvOutsideMaxRange()" that uses the isInvValid() method to test if the inventory number set inside the in-house part object and the outsourced part object stores a number outside the range of the expected maximum inventory number.
+
+### J. Remove the class files for any unused validators in order to clean your code.
+
+#### under DeletePartValidator.java
+
+#### - deleted the "DeletePartValidator.java" file as it had no usages within the application.
