@@ -81,7 +81,7 @@ public class BootStrapData implements CommandLineRunner {
             inPartOne.setName("scooter deck");
             inPartOne.setPrice(100);
             inPartOne.setInv(5);
-            inPartOne.setMinInv(1);
+            inPartOne.setMinInv(0);
             inPartOne.setMaxInv(40);
             inPartOne.setPartId(10);
             inhousePartRepository.save(inPartOne);

@@ -140,7 +140,7 @@ Note: Make sure the sample inventory is added only when both the part and produc
 
 #### under EnufPartsValidator.java
 
-#### on line 36 - added an if statement that checks if a part's inventory dips below the minimum inventory limit for that part while creating a product using that part. If that's true, it sends out an appropriate error to the user.
+#### on line 36 - added an if statement that checks if a part's inventory dips below the minimum inventory limit for that part while creating a product using that part. If that's true, the method "isValid()" returns false and the user is prompted with an error stating there is no more inventory for that part(s) to be added to the product.
 
 ### I.  Add at least two unit tests for the maximum and minimum fields to the PartTest class in the test package.
 
@@ -161,3 +161,52 @@ Note: Make sure the sample inventory is added only when both the part and produc
 #### under DeletePartValidator.java
 
 #### - deleted the "DeletePartValidator.java" file as it had no usages within the application.
+
+### Revision #1
+
+#### H.  Add validation for between or at the maximum and minimum fields. The validation must include the following:
+•  Display error messages for low inventory when adding and updating parts if the inventory is less than the minimum number of parts.
+•  Display error messages for low inventory when adding and updating products lowers the part inventory below the minimum.
+•  Display error messages when adding and updating parts if the inventory is greater than the maximum.
+
+Evaluator's comments regarding section H on the rubric:
+The submission correctly contains the appropriate fields necessary to modify the details of both the parts and products. 
+The submission is not fully developed as the expected validation for the associated parts component of the product details page was not observed.
+
+### under ValidEnufParts.java
+
+#### - on line 20 - modified the string to display a more error-specific message - "Adding/updating this product will cause part inventory to fall below minimum. Restock parts' inventory first." when the overridden method "isValid()" inside "EnuffPartsValidator.java" returns false.
+
+### under EnuffPartsValidator.java
+
+#### - on line 36 - modified the code by removing the extra unneeded parathesis, cleaning up the code a bit. 
+
+### under productForm.html
+
+#### - on lines 74 to 76 - uncommented the footer tag to include a link back to "mainscreen.html" in case user runs out of parts to build the product, instead of having to navigate back to "mainscreen.html" by clicking on the browser's back button or having to remove pre-existing parts from the product's form page in order to workaround successfully submitting the form again and navigating back to the "mainscreen.html".
+
+### under BoostrapData.java
+
+#### - on line 84 - changed the min inventory to 0 for the sample data to match the rest of the sample data sets for easier validation testing of maximum / minimum values / adding or updating products lowering parts inventory past the minimum number of parts and displaying appropriate error messages for each.
+
+#### Included a new repository graph with my submission along with an updated zip file for the entire project.
+
+Note to evaluator: 
+Just as it is listed in the Shop Inventory Management User Guide.pdf provided - pages 6-8:
+My updated submission should show the expected validation for the associated parts component of the product details page when:
+1. The new product is saved to the product list, always starting with an inventory of 0.
+2. After returning to the main screen, clicking on the new product's "update" button brings you back to the product form.
+3. A user can then start building the product by clicking on the "add" button inside the "Available Parts" table.
+4. This moves the parts over to the "Associated Parts" table that will be used to build the product.
+5. Before submitting, updating the inventory amount will reflect how many products will be built using the same amount of available parts. Ex: if the number of products in stock is four, it will decrement the number of parts in stock for all the associated parts by four.
+5. If there aren't any more available parts to build the new product, an error message for low inventory is generated since the part inventory is below the minimum set amount for that part or parts.
+
+#### Adding/Removing Parts to/from a product alone does not impact the inventory count of the parts as the previously specified product is already complete and on the shelves. You still must increase the inventory count of the product and save when ready to begin assembly of the modified product, and thus reducing the stock counts of the parts associated with it.
+
+#### To build more products, update the inventory of the products. This will remove from the parts associated with the product the number of parts equal to the current inventory of products minus the prior inventory of products. In other words, it will remove only the number of parts used to make the additional products.
+
+#### Lowering number of products in stock does not increase the number of parts. The products aren’t disassembled and used for inventory- instead this reflects the products have been sold.
+
+My submission should demonstrate all of the above.
+
+I haven't made any changes to the outsourced parts or in-house parts controllers so when invalid information is entered, the appropriate error messages will still appear below the field as they did beforehand.  
