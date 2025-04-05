@@ -43,7 +43,13 @@ public class AddOutsourcedPartController {
         if(bindingResult.hasErrors()){
             return "OutsourcedPartForm";
         }
-        else{
+        if (!part.isInvValid() && part.getInv() < part.getMinInv()) {
+            bindingResult.rejectValue("inv", "error.part", "Inventory amount is set below minimum limit");
+            return "OutsourcedPartForm";
+        } else if (!part.isInvValid() && part.getInv() > part.getMaxInv()) {
+            bindingResult.rejectValue("inv", "error.part", "Inventory amount is set above maximum limit.");
+            return "OutsourcedPartForm";
+        } else{
         OutsourcedPartService repo=context.getBean(OutsourcedPartServiceImpl.class);
         OutsourcedPart op=repo.findById((int)part.getId());
         if(op!=null)part.setProducts(op.getProducts());
